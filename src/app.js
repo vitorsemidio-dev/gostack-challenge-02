@@ -14,9 +14,8 @@ app.get("/repositories", (request, response) => {
   return response.json(repositories);
 });
 
-app.post("/repositories", (request, response) => {  const { title, url, techs: techsString  } = request.body;
-
-  const techs = techsString.split(',').map(tech => tech.trim());
+app.post("/repositories", (request, response) => {
+  const { title, url, techs } = request.body;
 
   const repository = {
     id: uuid(),
@@ -32,9 +31,7 @@ app.post("/repositories", (request, response) => {  const { title, url, techs: t
 });
 
 app.put("/repositories/:id", (request, response) => {  const { id } = request.params;
-  const { title, url, techs: techsString } = request.body;
-
-  const techs = techsString.split(',').map(tech => tech.trim());
+  const { title, url, techs } = request.body;
 
   const repositoryIndex = repositories.findIndex(repository => repository.id === id);
 
